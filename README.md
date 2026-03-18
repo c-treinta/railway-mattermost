@@ -1,6 +1,6 @@
 # Deploy and Host Mattermost on Railway
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/TEMPLATE_ID)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/mattermost-1)
 
 Mattermost is an open-source, self-hosted team messaging and collaboration platform. It provides chat channels, direct messages, file sharing, and integrations as a privacy-first alternative to Slack and Microsoft Teams.
 
