@@ -1,10 +1,57 @@
 {
-  "$schema": "https://railway.app/railway.schema.json",
+  "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "DOCKERFILE"
   },
   "deploy": {
     "healthcheckPath": "/api/v4/system/ping",
+    "healthcheckTimeout": 300,
     "restartPolicyType": "ON_FAILURE"
+  },
+  "variables": {
+    "PORT": {
+      "description": "Port Mattermost listens on inside the container.",
+      "default": "8065"
+    },
+    "MM_SERVICESETTINGS_LISTENADDRESS": {
+      "description": "Internal listen address for the Mattermost HTTP server.",
+      "default": ":8065"
+    },
+    "MM_SERVICESETTINGS_SITEURL": {
+      "description": "Publicly accessible URL of your Mattermost instance (update after deploy with your Railway domain).",
+      "default": "https://your-app.up.railway.app"
+    },
+    "MM_SQLSETTINGS_DRIVERNAME": {
+      "description": "Database driver. Set to 'postgres' when using the Railway-managed Postgres service.",
+      "default": "postgres"
+    },
+    "MM_SQLSETTINGS_DATASOURCE": {
+      "description": "Full Postgres connection string. References the Railway-managed Postgres service.",
+      "default": "${{Postgres.DATABASE_URL}}"
+    },
+    "MM_SERVICESETTINGS_ALLOWCORSFROM": {
+      "description": "Comma-separated list of origins allowed to make cross-origin requests. Leave empty to restrict to SITEURL only.",
+      "default": ""
+    },
+    "MM_EMAILSETTINGS_SMTPSERVER": {
+      "description": "SMTP server hostname for outbound email (e.g. smtp.sendgrid.net). Leave empty to disable email.",
+      "default": ""
+    },
+    "MM_EMAILSETTINGS_SMTPPORT": {
+      "description": "SMTP server port (typically 587 for TLS, 465 for SSL).",
+      "default": "587"
+    },
+    "MM_EMAILSETTINGS_SMTPUSERNAME": {
+      "description": "SMTP username / API key for authenticating with the mail provider.",
+      "default": ""
+    },
+    "MM_EMAILSETTINGS_SMTPPASSWORD": {
+      "description": "SMTP password for outbound email. Auto-generated placeholder — replace with your actual SMTP credential.",
+      "default": "${{secret(32)}}"
+    },
+    "MM_EMAILSETTINGS_FEEDBACKEMAIL": {
+      "description": "From address used in system-generated emails (e.g. noreply@example.com).",
+      "default": ""
+    }
   }
 }
